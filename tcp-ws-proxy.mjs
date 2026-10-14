@@ -12,7 +12,7 @@ const targetPort = Number(process.env.TARGET_PORT);
 const tlsKeyPath = process.env.TLS_KEY ?? './localhost-key.pem';
 const tlsCertPath = process.env.TLS_CERT ?? './localhost-cert.pem';
 const maxPayload = Number(process.env.MAX_WS_PAYLOAD ?? 1024 * 1024);
-const RELAY_TOKEN = "MySecretAmongUsRelayToken2026!xYabc";
+const relayToken = "MySecretAmongUsRelayToken2026!xYabc";
 const isPublic = listenHost === '0.0.0.0' || listenHost === '::';
 const allowedOrigins = new Set(
   (process.env.ALLOWED_ORIGINS ?? '').split(',').map((origin) => origin.trim()).filter(Boolean),

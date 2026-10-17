@@ -80,6 +80,15 @@
     .catalog-link:hover{filter:brightness(1.1)}
     .catalog-empty{grid-column:1/-1;padding:30px;color:var(--muted);text-align:center;border:1px dashed #ffffff26;border-radius:12px}
     .catalog-credit{margin-top:17px;color:#858995;font-size:.76rem}
+    .game-player{width:min(1100px,calc(100vw - 24px));max-width:none;max-height:calc(100vh - 24px);padding:0;border:1px solid #ffffff28;border-radius:16px;background:#151820;color:var(--text);box-shadow:0 24px 90px #000b}
+    .game-player::backdrop{background:#050609d9;backdrop-filter:blur(5px)}
+    .game-player-head{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:13px 16px;border-bottom:1px solid var(--line)}
+    .game-player-head h2{margin:0;font-size:1rem;overflow-wrap:anywhere}
+    .game-player-head button,.game-player-actions a{padding:8px 11px;border:1px solid #ffffff24;border-radius:8px;background:#252832;color:var(--text);font:inherit;font-size:.8rem;font-weight:700;text-decoration:none;cursor:pointer}
+    .game-player-note{margin:0;padding:8px 16px;color:var(--muted);font-size:.76rem}
+    .game-player-frame{display:block;width:100%;height:min(72vh,760px);min-height:320px;border:0;background:#090b0f}
+    .game-player-actions{display:flex;justify-content:flex-end;padding:0 16px 13px}
+    @media(max-width:600px){.game-player{width:100vw;height:100dvh;max-height:100dvh;border-radius:0}.game-player-frame{height:calc(100dvh - 128px);min-height:0}}
     .catalog-credit a{color:#c4bbff}
     @media(max-width:880px){.catalog-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
     @media(max-width:600px){.catalog-top{display:block}.catalog-controls{flex-direction:column}.catalog-controls select{width:100%}.catalog-grid{grid-template-columns:1fr;max-height:600px}.catalog-panel{padding:18px}}
@@ -129,7 +138,7 @@
             <div>
               <div class="eyebrow">Community collection</div>
               <h2 id="catalog-title">Browse web game ports</h2>
-              <p>Search the full catalog. Entries with demos link to the listed browser build; others link to their project source.</p>
+              <p>Play listed browser demos inside this hub. Source-only entries are reference links and need a browser build before they can run here.</p>
             </div>
             <span class="soon">582 CATALOG ENTRIES</span>
           </div>
@@ -194,10 +203,19 @@
             if(!item || !/^https?:\/\//i.test(item.url)) return;
             const link = document.createElement("a");
             link.className = "catalog-link " + (className || "");
-            link.href = item.url;
-            link.target = "_blank";
-            link.rel = "noopener noreferrer";
-            link.textContent = text;
+            link.textContent = className === "play-link" ? "▶ Play here" : text;
+            if(className === "play-link"){
+              link.href = "#game-player";
+              link.setAttribute("aria-label","Play " + game.name + " inside Webports Arcade");
+              link.addEventListener("click", event => {
+                event.preventDefault();
+                openPlayer(item.url, game.name);
+              });
+            } else {
+              link.href = item.url;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+            }
             links.appendChild(link);
           };
           addLink(game.demo,"▶ Play demo","play-link");

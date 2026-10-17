@@ -1318,7 +1318,8 @@
     "source": {
       "label": "johnimril/diablo_web",
       "url": "https://github.com/johnimril/diablo_web"
-    }
+    },
+    "openDirect": true
   },
   {
     "number": 135,
@@ -2264,7 +2265,8 @@
     "source": {
       "label": "web-ports/granny",
       "url": "https://github.com/web-ports/granny"
-    }
+    },
+    "openDirect": true
   },
   {
     "number": 230,

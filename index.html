@@ -159,6 +159,16 @@
     <footer><span>Webports Arcade · A personal browser game hub</span><span>Among Us cover image via <a href="https://store.steampowered.com/app/945360/Among_Us/" target="_blank" rel="noreferrer">Steam</a></span></footer>
   </div>
 
+<dialog id="game-player" class="game-player" aria-labelledby="game-player-title">
+    <div class="game-player-head">
+      <h2 id="game-player-title">Web game</h2>
+      <button id="game-player-close" type="button">Close</button>
+    </div>
+    <p class="game-player-note">This listed browser build is hosted by its project owner and runs embedded here. Some hosts block embedding.</p>
+    <iframe id="game-player-frame" class="game-player-frame" title="Selected web game" referrerpolicy="no-referrer" allow="fullscreen; gamepad; autoplay; clipboard-read; clipboard-write" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-presentation"></iframe>
+    <div class="game-player-actions"><a id="game-player-direct" href="#" target="_blank" rel="noopener noreferrer">Open demo directly</a></div>
+  </dialog>
+
   <script>
     (function(){
       const search = document.getElementById("catalog-search");
@@ -257,15 +267,6 @@
     })();
   </script>
 
-  <dialog id="game-player" class="game-player" aria-labelledby="game-player-title">
-    <div class="game-player-head">
-      <h2 id="game-player-title">Web game</h2>
-      <button id="game-player-close" type="button">Close</button>
-    </div>
-    <p class="game-player-note">This listed browser build is hosted by its project owner and runs embedded here. Some hosts block embedding.</p>
-    <iframe id="game-player-frame" class="game-player-frame" title="Selected web game" referrerpolicy="no-referrer" allow="fullscreen; gamepad; autoplay; clipboard-read; clipboard-write" allowfullscreen sandbox="allow-scripts allow-same-origin allow-forms allow-pointer-lock allow-presentation"></iframe>
-    <div class="game-player-actions"><a id="game-player-direct" href="#" target="_blank" rel="noopener noreferrer">Open demo directly</a></div>
-  </dialog>
 
 </body>
 </html>

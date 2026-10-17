@@ -166,6 +166,20 @@
       const grid = document.getElementById("catalog-grid");
       const count = document.getElementById("catalog-count");
       let catalog = [];
+      const player = document.getElementById("game-player");
+      const playerTitle = document.getElementById("game-player-title");
+      const playerFrame = document.getElementById("game-player-frame");
+      const playerDirect = document.getElementById("game-player-direct");
+      function openPlayer(url, name){
+        if(!/^https?:\/\//i.test(url)) return;
+        playerTitle.textContent = name;
+        playerFrame.title = name + " browser game";
+        playerFrame.src = url;
+        playerDirect.href = url;
+        player.showModal();
+      }
+      document.getElementById("game-player-close").addEventListener("click", () => player.close());
+      player.addEventListener("close", () => { playerFrame.src = "about:blank"; });
       function render(){
         const query = search.value.trim().toLocaleLowerCase();
         const mode = filter.value;

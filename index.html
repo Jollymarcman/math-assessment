@@ -138,7 +138,7 @@
             <div>
               <div class="eyebrow">Community collection</div>
               <h2 id="catalog-title">Browse web game ports</h2>
-              <p>Play listed browser demos inside this hub. Source-only entries are reference links and need a browser build before they can run here.</p>
+              <p>Selected games open their listed browser builds in a new tab. Other demos load inside this hub. Source-only entries link to code and need a browser build before they can run here.</p>
             </div>
             <span class="soon">582 CATALOG ENTRIES</span>
           </div>
@@ -228,7 +228,13 @@
             const link = document.createElement("a");
             link.className = "catalog-link " + (className || "");
             link.textContent = className === "play-link" ? "▶ Play here" : text;
-            if(className === "play-link"){
+            if(className === "play-link" && game.openDirect){
+              link.href = item.url;
+              link.target = "_blank";
+              link.rel = "noopener noreferrer";
+              link.textContent = "↗ Open game";
+              link.setAttribute("aria-label","Open " + game.name + " in a new tab");
+            } else if(className === "play-link"){
               link.href = "#game-player";
               link.setAttribute("aria-label","Play " + game.name + " inside Webports Arcade");
               link.addEventListener("click", event => {

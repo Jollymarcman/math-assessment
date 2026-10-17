@@ -228,23 +228,12 @@
             const link = document.createElement("a");
             link.className = "catalog-link " + (className || "");
             link.textContent = className === "play-link" ? "▶ Play here" : text;
-            if(className === "play-link" && game.openDirect){
-              link.href = item.url;
-              link.target = "_blank";
-              link.rel = "noopener noreferrer";
+            link.href = item.url;
+            link.target = "_blank";
+            link.rel = "noopener noreferrer";
+            if(className === "play-link"){
               link.textContent = "↗ Open game";
               link.setAttribute("aria-label","Open " + game.name + " in a new tab");
-            } else if(className === "play-link"){
-              link.href = "#game-player";
-              link.setAttribute("aria-label","Play " + game.name + " inside Webports Arcade");
-              link.addEventListener("click", event => {
-                event.preventDefault();
-                openPlayer(item.url, game.name);
-              });
-            } else {
-              link.href = item.url;
-              link.target = "_blank";
-              link.rel = "noopener noreferrer";
             }
             links.appendChild(link);
           };
